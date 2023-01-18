@@ -9,13 +9,13 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>org.fotm</groupId>
-    <artifactId>nullbeans-mvc</artifactId>
-    <name>nullbeans-mvc</name>
-    <description>Demo project for Spring Boot</description>
+    <artifactId>baeldung-mvc</artifactId>
+    <name>baeldung-mvc</name>
+    <description>Demo project for Spring Boot inspired by Baeldung blog</description>
     <!-- look for hints here https://github.com/eugenp/tutorials/blob/master/spring-boot-modules/spring-boot-mvc-2/pom.xml -->
     <properties>
         <java.version>11</java.version>
-        <start-class>org.fotm.nullbeans.mvc.NullbeansMvcApplication</start-class>
+        <start-class>org.fotm.baeldung.mvc.BaeldungMvcApplication</start-class>
     </properties>
     <dependencies>
         <dependency>
