@@ -1,6 +1,6 @@
-package com.example.demo.client;
+package org.fotm.async.consumer.client;
 
-import com.example.demo.integration.Message;
+import org.fotm.async.consumer.integration.Message;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor

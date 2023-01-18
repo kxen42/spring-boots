@@ -1,4 +1,4 @@
-package com.example.demo.integration;
+package org.fotm.async.consumer.integration;
 
 import lombok.RequiredArgsConstructor;
 
