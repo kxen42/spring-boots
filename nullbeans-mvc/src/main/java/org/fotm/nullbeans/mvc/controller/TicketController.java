@@ -7,6 +7,7 @@ import org.fotm.nullbeans.mvc.model.TicketDto;
 import org.fotm.nullbeans.mvc.repository.TicketRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.Map;
 import java.util.Optional;
@@ -62,7 +64,7 @@ public class TicketController {
     // be default JSON @RequestBody will be deserialized
     @SneakyThrows
     @PostMapping()
-    public ResponseEntity<TicketDto> addTicket(@RequestBody TicketDto ticketDto) {
+    public ResponseEntity<TicketDto> addTicket(@Valid @RequestBody TicketDto ticketDto) {
         Ticket domainTicket = new Ticket();
         domainTicket.setDescription(ticketDto.getDescription());
         domainTicket.setTitle(ticketDto.getTitle());
@@ -80,8 +82,9 @@ public class TicketController {
 
     }
 
+    // Using validation group here
     @PutMapping()
-    public ResponseEntity<Void> updateTicket(@RequestBody TicketDto ticketDto) {
+    public ResponseEntity<Void> updateTicket(@Validated(TicketDto.OnUpdate.class) @RequestBody TicketDto ticketDto) {
         // the nullbeans people use the ID in a path parameter, but the RFC
         // and stackoverflow recommends using it in the DTO
         Optional<Ticket> optionalTicket = ticketRepository.findById(ticketDto.getId());
