@@ -1,5 +1,6 @@
 package org.fotm.nullbeans.mvc.service;
 
+import org.fotm.nullbeans.mvc.domain.UserAccount;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.Min;
@@ -13,4 +14,8 @@ public class TicketManagementServiceImpl implements TicketManagementService {
 
     }
 
+    @Override
+    public void addPaymentMethod(UserAccount userAccount) {
+
+    }
 }

@@ -1,6 +1,7 @@
 package org.fotm.nullbeans.mvc;
 
-import org.fotm.nullbeans.mvc.model.TicketDto;
+import org.fotm.nullbeans.mvc.domain.PaymentMethod;
+import org.fotm.nullbeans.mvc.domain.UserAccount;
 import org.fotm.nullbeans.mvc.service.TicketManagementService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,5 +46,20 @@ class TicketManagementServiceTest {
         });
 
         assertEquals("cancelTicket.reasonForCancellation: size must be between 10 and 200, cancelTicket.arg1: size must be between 10 and 200", thrown.getMessage());
+    }
+
+    @Test
+    void addPaymentMethod_paymentMethodIdIsZero() {
+        PaymentMethod paymentMethod = new PaymentMethod(0L);
+        UserAccount userAccount = new UserAccount();
+        userAccount.getPaymentMethods()
+                   .add(paymentMethod);
+
+        Exception thrown = assertThrows(ConstraintViolationException.class, () -> {
+            service.addPaymentMethod(userAccount);
+        });
+
+        assertEquals("addPaymentMethod.arg0.paymentMethods[0].id: must be greater than or equal to 1", thrown.getMessage());
+
     }
 }
